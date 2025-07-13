@@ -103,7 +103,7 @@ func main() {
 		panic(err)
 	}
 	defer db.Close()
-
+	// Создание таблицы
 	_, err = db.Exec(`
 	CREATE TABLE IF NOT EXISTS parcel (
 		number INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -116,10 +116,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
-	store := NewParcelStore(db)
-
-	// создайте объект ParcelStore функцией NewParcelStore
+	store := NewParcelStore(db) // создайте объект ParcelStore функцией
 	service := NewParcelService(store)
 
 	// регистрация посылки
